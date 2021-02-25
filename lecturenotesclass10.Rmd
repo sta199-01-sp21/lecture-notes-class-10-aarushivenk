@@ -172,17 +172,40 @@ Perform a simulation to compute this empirical probability.
 
 Write down your guess to the answer before you calculate it.
 
+My prediction is that there is a higher probability fo the second event
+occurring because there are more ways that event 2 can be true (dice results 
+being 1/5, 2/6, 5/1, 6/2) than event 1 being true (1/1, 2/4).
+
 ```{r simulate_rolls}
+
+two_roll_results <- tibble(
+  roll_1 = replicate(n = 10000, expr = sample(1:6, size=1)),
+  roll_2 = replicate(n = 10000, expr = sample(1:6, size=1))
+)
+two_roll_results
+
 
 ```
 
 ```{r identify_events}
 
+two_roll_results <- two_roll_results %>% 
+  mutate(number_match = roll_1^2 == roll_2,
+         diff_match = abs(roll_1-roll_2) == 4)
+two_roll_results
+
 ```
 
 ```{r summarize_rolls}
+two_roll_results %>% 
+  summarize(number_match_prob= mean(number_match), 
+            diff_match_prob = mean (diff_match))
 
 ```
+
+My prediction was correct. The probability of event 2 happening is almost double
+that of the probability of event 1 happening (0.106 vs 0.0574). 
+
 
 ## Additional Resources-please look at before Weds.
 
