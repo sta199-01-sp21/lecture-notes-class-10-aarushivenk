@@ -50,16 +50,26 @@ xtabs(~ Treatment + Improved, data = Arthritis) %>%
 
 - How many patients were enrolled in the clinical trial?
 
+84 patients were enrolled in the clinical trial. 
+
 - What is the probability a randomly selected patient received the placebo?
+
+  51.2% (43/84)
 
 - What is the probability a randomly selected patient received the placebo
   and had a marked improvement?
   
+  8.3% (7/84)
+  
 - What is the probability a randomly selected patient received the placebo
   and the treatment?
   
+  0% (disjoint probability)
+  
 - What is the probability a randomly selected patient had some improvement or
   was on the treatment?
+  
+  57.1% ((7+41)/84)
 
 ## Using computer simulations to calculate probabilities
 
@@ -101,6 +111,11 @@ prop.table(counts)
 ```
 
 How close is this value to the "true" probability?
+
+This value is very close to the true probability. The true probability of blue 
+is 0.375, red is 0.5, and white is 0.125. As we increase the size of our trials,
+the law of large numbers indicates that we will get closer to the true
+probability.
 
 **To summarize our process:**
 
